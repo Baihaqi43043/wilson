@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SHIMI AI</title>
+    <link rel="icon" href="./images/bot.png" type="image/x-icon" sizes="16x16" />
+    <!-- Include Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/aos.css" rel="stylesheet">
+
+    <style>
+        /* Menghapus margin dan padding default dari body */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%; /* Pastikan body dan html memiliki tinggi 100% */
+            width: 100%; /* Pastikan body dan html memiliki lebar 100% */
+        }
+
+        /* CSS untuk video background */
+        .background {
+            position: relative;
+            width: 100%;
+            height: 100vh; /* Full viewport height */
+            overflow: hidden;
+        }
+
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Membuat video menutupi seluruh area */
+            z-index: -1; /* Menempatkan video di belakang konten */
+        }
+
+ /* Gaya untuk tombol */
+        .content a {
+            display: inline-block; /* Membuat elemen <a> seperti tombol */
+            text-align: center;
+            background: #fee79e; /* Warna latar kuning lembut */
+            border: 1px solid #000000; /* Border hitam */
+            box-shadow: 9px 9px 0px 1px #000000; /* Bayangan dengan efek retro */
+            border-radius: 20px; /* Membuat sudut membulat */
+            color: #000000; /* Warna teks hitam */
+            font-size: 32px; /* Ukuran font besar */
+            font-family: 'Comic Sans MS', 'Comic Sans', cursive; /* Font yang fun */
+            text-decoration: none; /* Menghilangkan garis bawah */
+            font-weight: 100; /* Berat font ringan */
+            margin: 1rem auto; /* Jarak antar tombol */
+            padding: 10px 20px; /* Ruang di dalam tombol */
+        }
+
+        /* Efek hover untuk tombol */
+        .content a:hover {
+            background: #000000; /* Warna latar berubah menjadi hitam */
+            color: #ffffff; /* Warna teks berubah menjadi putih */
+            box-shadow: 0px 0px 20px 5px #fee79e; /* Efek cahaya pada hover */
+            transform: scale(1.1); /* Membesarkan tombol sedikit */
+            transition: all 0.3s ease-in-out; /* Animasi transisi */
+        }
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 2rem;
+            text-align: center;
+            z-index: 1; /* Konten di atas video */
+            display: flex;
+            flex-direction: column; /* Mengatur gambar dalam kolom */
+            gap: 10px; /* Jarak antar gambar bisa disesuaikan */
+        }
+
+        /* Mengatur tinggi kontainer agar memenuhi seluruh tinggi viewport */
+        .full-height {
+            background-color: #00CCD7;
+            height: 100vh; /* 100% tinggi viewport */
+            display: flex;
+            align-items: center;
+        }
+
+        /* Video container hanya dalam kolom kanan */
+        .video-container {
+            width: 100%;
+            height: 100%; /* Pastikan video mengisi kolom penuh */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .video-container > video {
+            /* Aturan CSS yang sama */
+            width: 100%; /* Mengisi seluruh lebar kolom */
+            max-height: 90vh; /* Batas tinggi video agar tidak keluar dari viewport */
+            border: 5px solid white; /* Border untuk mempercantik */
+            border-radius: 10px; /* Membuat sudut border melengkung */
+            object-fit: contain; /* Menjaga proporsi video */
+        }
+
+
+        h1 {
+            color: white;
+            font-size: 3rem;
+            text-align: center;
+        }
+        /* Section 3 Styling */
+        .section-3 {
+            background-color: #6AAAF4; /* Warna background */
+            color: white;
+            text-align: center; /* Mengatur teks di tengah */
+            padding: 50px 20px;
+        }
+
+        .section-3 img {
+            max-width: 100%; /* Membuat gambar responsif */
+            width: auto;
+            display: block; /* Mengatur elemen sebagai blok */
+            margin: 0 auto; /* Memastikan gambar berada di tengah */
+        }
+
+        .section-3 .info {
+            font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: white; /* Warna teks */
+        }
+
+        .section-3 .buy-now {
+            background: #fee79e;
+            border: 2px solid #000000;
+            box-shadow: 4px 4px 0px #000000;
+            border-radius: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #000000;
+            padding: 10px 20px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .section-3 .buy-now:hover {
+            background: #000000;
+            color: #ffffff;
+            box-shadow: 0px 0px 15px #fee79e;
+            transform: scale(1.1);
+        }
+
+          /* Section Styling */
+          .section-5 {
+            background-color: #04d9d9; /* Warna latar belakang */
+            color: #ffffff; /* Warna teks */
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        /* Gaya untuk teks utama */
+        .section-5 .title {
+            font-family: 'Comic Sans MS', 'Comic Sans', cursive; /* Font yang fun */
+            font-size: 5rem; /* Ukuran font besar */
+            color: #654321; /* Warna teks coklat */
+            text-shadow: 4px 4px 0px #ffffff; /* Efek bayangan putih */
+            position: relative;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+
+        /* Tombol sosial media */
+        .section-5 .socials-container {
+            margin: 20px 0;
+        }
+
+        .section-5 .socials-container a {
+            display: inline-block;
+            margin: 0 10px; /* Jarak antar ikon */
+            width: 50px; /* Ukuran ikon */
+            height: 50px;
+            border-radius: 50%; /* Bentuk lingkaran */
+            overflow: hidden;
+            box-shadow: 4px 4px 0px #000000; /* Efek bayangan */
+            background-color: #ffffff; /* Latar belakang */
+        }
+
+        .section-5 .socials-container img {
+            width: 100%; /* Gambar memenuhi lingkaran */
+            height: 100%;
+            object-fit: cover; /* Menjaga proporsi */
+        }
+
+        /* Tombol utama */
+        .section-5 .links a {
+            display: inline-block;
+            background: #fee79e; /* Warna latar tombol */
+            color: #000000; /* Warna teks tombol */
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 10px 20px;
+            margin: 10px;
+            text-decoration: none;
+            border-radius: 20px;
+            box-shadow: 5px 5px 0px #000000; /* Efek bayangan */
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Hover efek untuk tombol */
+        .section-5 .links a:hover {
+            background: #000000; /* Warna latar berubah menjadi hitam */
+            color: #ffffff; /* Teks berubah menjadi putih */
+            transform: scale(1.1); /* Membesar saat hover */
+            box-shadow: 0px 0px 15px #fee79e; /* Efek cahaya */
+        }
+
+        /* Tautan di bawah */
+        .section-5 .footer-link {
+            color: #ffffff;
+            font-size: 1rem;
+            text-decoration: none;
+            margin-top: 20px;
+            display: inline-block;
+        }
+
+        .section-5 .footer-link:hover {
+            text-decoration: underline; /* Garis bawah saat hover */
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+    <!-- Layout 1 -->
+    <div class="background">
+        <video autoplay loop muted class="video-background">
+            <source src="images/back.mp4" type="video/mp4">
+            Browser Anda tidak mendukung video.
+        </video>
+
+        <div class="content">
+            <img src="img/wilsontext.png" style="width: 600px;" alt="">
+            <img src="img/wilson.png" class="" alt="">
+            <a class="mt-2" href="https://pump.fun/GV5ugVW2bBooKBeMUueFLXAUL3tbAyqVrrkdh2njpump">Buy $wilson</a>
+        </div>
+    </div>
+
+    <!-- Layout 2 -->
+    <div class="container-fluid full-height">
+        <div class="row w-100">
+            <!-- Kolom Teks -->
+            <div class="col-6 d-flex justify-content-center align-items-center">
+                <div class="row">
+                    <div class="col-12 text-center mb-2">
+                        <img src="img/wilsontext.png" alt="">
+                    </div>
+                    <div 
+                    class="col-12" 
+                    style="
+                        text-align: justify; 
+                        padding: 15; 
+                        background-color: #f9f9f9; 
+                        border: 2px solid #ddd; 
+                        border-radius: 15px; 
+                        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
+                        max-width: 80%; 
+                        margin: 30px auto; 
+                        font-size: 1.3rem; 
+                        line-height: 2; 
+                        color: #444; 
+                        font-family: 'Comic Sans MS', 'Comic Sans', cursive;"
+                >
+                    <p>In the midst of a devastating flood that swept through his village, the man stood helplessly by the rushing waters, his eyes fixed on a lone chicken perched atop a drifting wooden plank. That was Wilson, his faithful companion, the only friend who had brightened his days. He reached out, his voice trembling as he shouted, "I'm sorry, Wilson!" But the current was too strong, carrying the plank—and Wilson—further and further away. His heart shattered as he watched Wilson struggle against the relentless torrent. Knowing there was nothing he could do, he stood frozen, silently praying that Wilson would somehow survive, even if it meant saying goodbye forever.</p>
+                    
+                </div>
+                <div class="col-12 mt-5"><div class="content">
+                    <a class="mt-2" href="https://pump.fun/GV5ugVW2bBooKBeMUueFLXAUL3tbAyqVrrkdh2njpump">Buy $wilson</a>
+                </div></div>
+                </div>
+            </div>
+
+            <!-- Kolom Video -->
+            <div class="col-6 video-container">
+                <video autoplay loop muted controls>
+                    <source src="img/wilson_vid.mp4" class="vid_wil" type="video/mp4">
+                    Browser Anda tidak mendukung tag video.
+                </video>
+            </div>
+        </div>
+    </div>
+
+ <!-- Section 3 -->
+ <section class="section-3">
+    <div class="container">
+        <img src="images/tokenomics.png" alt="Tokenomics">
+        <div class="mt-5">
+            <p class="info">SUPPLY : 1,000,000,000</p>
+            <p class="info">TICKER : $WILSON</p>
+        </div>
+        <a href="#" class="buy-now">BUY NOW</a>
+    </div>
+</section>
+ <!-- Section 5 -->
+ <section class="section-5">
+    <!-- Judul dengan gambar -->
+    <div class="title">
+        <img src="img/wilsontext.png" alt="Sloth Icon">
+        <br>
+        <img src="img/wilson.png" alt="">
+    </div>
+
+    <!-- Kontainer ikon sosial media -->
+    <div class="socials-container">
+        <a href="#"><img src="img/tiktok.png" alt="Pill Icon"></a>
+        <a href="#"><img src="img/telegram.png" alt="Telegram Icon"></a>
+        <a href="#"><img src="img/x.png" alt="X Icon"></a>
+    </div>
+
+    <!-- Kontainer tautan -->
+    <div class="links">
+        <a href="#">BUY $wilson</a>
+        <a href="#">GV5UGVW2BBOOKBMUEFLXAUL3TBAYQURRKDH2NJPUMP</a>
+    </div>
+
+    <!-- Tautan footer -->
+    <a href="#" class="footer-link">https://t.me/Wilson</a>
+</section>
+    <!-- Include Bootstrap JS (optional for other features like modals, dropdowns, etc.) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- <script src="js/aos.js"></script> -->
+</body>
+
+</html>
